@@ -13,6 +13,18 @@ public class Main06 {
             int x2 = scanner.nextInt();
             int y2 = scanner.nextInt();
             int r2 = scanner.nextInt();
+            int d = (int) (Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
+            if (x1 == x2 && y1 == y2 && r1 == r2) {
+                System.out.println(-1);
+            } else if (Math.sqrt(d) > r1 + r2 || d < Math.pow(r2 - r1, 2)) {
+                System.out.println(0);
+            } else if (d == Math.pow(r2 - r1, 2)) {
+                System.out.println(1);
+            } else if (d == Math.pow(r2 + r1, 2)) {
+                System.out.println(1);
+            } else {
+                System.out.println(2);
+            }
         }
     }
 }
