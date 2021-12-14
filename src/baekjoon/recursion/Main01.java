@@ -3,6 +3,7 @@ package baekjoon.recursion;
 import java.util.Scanner;
 
 public class Main01 {
+    // 팩토리얼 재귀적으로 할만하다
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
