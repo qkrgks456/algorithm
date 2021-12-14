@@ -3,7 +3,7 @@ package baekjoon.recursion;
 import java.util.Scanner;
 
 public class Main04 {
-
+    // 하노이탑 너무 어렵다
     static StringBuilder stringBuilder = new StringBuilder();
 
     public static void main(String[] args) {

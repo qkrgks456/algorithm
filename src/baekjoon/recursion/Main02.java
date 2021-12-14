@@ -3,7 +3,7 @@ package baekjoon.recursion;
 import java.util.Scanner;
 
 public class Main02 {
-
+    // 피보나치 수열은 킹만하다
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();

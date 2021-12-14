@@ -5,6 +5,7 @@ import java.io.OutputStreamWriter;
 import java.util.Scanner;
 
 public class Main03 {
+    // 별찍기 그냥 맛탱이가 가버린다
     static char[][] chars;
 
     public static void main(String[] args) throws Exception {
