@@ -1,34 +1,46 @@
 package baekjoon.sort;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.Arrays;
 
 public class Main05 {
     public static void main(String[] args) throws Exception {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        String s = bufferedReader.readLine();
-        String[] strings = s.split("");
-        int[] ints = new int[strings.length];
-        int[] ch = new int[10];
-        int[] result = new int[strings.length];
-        for (int i = 0; i < strings.length; i++) {
-            ints[i] = Integer.parseInt(strings[i]);
+        int n = Integer.parseInt(bufferedReader.readLine());
+        int[][] ints = new int[n][2];
+        for (int i = 0; i < n; i++) {
+            String s = bufferedReader.readLine();
+            String[] strings = s.split(" ");
+            ints[i][0] = Integer.parseInt(strings[0]);
+            ints[i][1] = Integer.parseInt(strings[1]);
         }
-        for (int n : ints) {
-            ch[n]++;
+        // 람다식 이해 안된다 근데 이걸 써야만 한단다. 삽입정렬로 하니 시간 초과
+        /*Arrays.sort(ints, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] e1, int[] e2) {
+                if(e1[0] == e2[0]) {		// 첫번째 원소가 같다면 두 번째 원소끼리 비교
+                    return e1[1] - e2[1];
+                } else {
+                    return e1[0] - e2[0];
+                }
+            }
+        });*/
+        Arrays.sort(ints, (e1, e2) -> {
+            if (e1[0] == e2[0]) {
+                return e1[1] - e2[1];
+            } else {
+                return e1[0] - e2[0];
+            }
+        });
+        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
+        for (int i = 0; i < n; i++) {
+            bufferedWriter.write(ints[i][0] + " " + ints[i][1]);
+            bufferedWriter.write("\n");
         }
-        for (int i = 0; i < ch.length - 1; i++) {
-            ch[i + 1] = ch[i] + ch[i + 1];
-        }
-        // 0 1 2 3 4
-        for (int i = ints.length - 1; i >= 0; i--) {
-            result[ch[ints[i]] - 1] = ints[i];
-            ch[ints[i]]--;
-        }
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = result.length - 1; i >= 0; i--) {
-            stringBuilder.append(result[i]);
-        }
-        System.out.println(stringBuilder);
+        bufferedWriter.flush();
+        bufferedWriter.close();
     }
 }
