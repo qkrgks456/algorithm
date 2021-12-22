@@ -3,47 +3,44 @@ package baekjoon.backtracking;
 import java.util.Scanner;
 
 public class Main05 {
-    static int n, maxCount = 0;
-    static int[][] ch;
+    // 이해 안간다 인생 망했다 이걸 어케 함 풀이봐도 이해 안됨
+    static int n, count = 0;
+    static int[] ints;
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         n = scanner.nextInt();
-        ch = new int[n][n];
-        if (n < 4) {
-            System.out.println(0);
-        } else if (n % 2 == 0) {
-            for (int i = 0; i < n / 2; i++) {
-                for (int j = 0; j < n / 2; j++) {
-                    DFS(i, j, 0);
-                }
-            }
-            System.out.println(maxCount * 4);
-        } else if (n % 2 != 0) {
-            for (int i = 0; i < n / 2 + 1; i++) {
-                for (int j = 0; j < n / 2 + 1; j++) {
-                    DFS(i, j, 0);
+        ints = new int[n];
+        recursion(0);
+        System.out.println(count);
+    }
+    // 이차원 배열 말고 일차원 배열로 x,y를 확인 한다는 건데
+    // 이걸 어케 함 ㅡ.ㅡ
+    public static void recursion(int depth) {
+        if (n == depth) {
+            count++;
+            return;
+        } else {
+            for (int i = 0; i < n; i++) {
+                ints[depth] = i;
+                if (check(depth)) {
+                    recursion(depth + 1);
                 }
             }
         }
-
     }
 
-    public static void DFS(int x, int y, int count) {
-        if (count == 3) {
-            return;
-        }
-        for (int i = 0; i < n; i++) {
-            ch[x][i] = 1;
-            ch[i][y] = 1;
-        }
-
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (ch[i][j] == 0) {
-                    DFS(i, j, count + 1);
-                }
+    public static boolean check(int col) {
+        for (int i = 0; i < col; i++) {
+            // 동일할때?
+            if (ints[i] == ints[col]) {
+                return false;
+            }
+            // 여기가 대각선 체크고
+            else if (Math.abs(col - i) == Math.abs(ints[col] - ints[i])) {
+                return false;
             }
         }
+        return true;
     }
 }
