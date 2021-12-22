@@ -19,7 +19,7 @@ public class Main07 {
         for (int i = 0; i < 4; i++) {
             cals[i] = scanner.nextInt();
         }
-        recursion(0, 0);
+        recursion(1, ints[0]);
         System.out.println(max);
         System.out.println(min);
     }
@@ -30,7 +30,26 @@ public class Main07 {
             min = Math.min(min, sum);
             return;
         } else {
-
+            for (int i = 0; i < 4; i++) {
+                if (cals[i] != 0) {
+                    cals[i]--;
+                    switch (i) {
+                        case 0:
+                            recursion(num + 1, sum + ints[num]);
+                            break;
+                        case 1:
+                            recursion(num + 1, sum - ints[num]);
+                            break;
+                        case 2:
+                            recursion(num + 1, sum * ints[num]);
+                            break;
+                        case 3:
+                            recursion(num + 1, sum / ints[num]);
+                            break;
+                    }
+                    cals[i]++;
+                }
+            }
         }
     }
 }
