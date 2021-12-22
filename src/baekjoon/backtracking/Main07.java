@@ -6,6 +6,7 @@ public class Main07 {
     static int max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
     static int[] ints, cals;
     static int n;
+
     // 연산식 한번 끝까지 해보자
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -18,7 +19,7 @@ public class Main07 {
         for (int i = 0; i < 4; i++) {
             cals[i] = scanner.nextInt();
         }
-        recursion(0, ints[0]);
+        recursion(0, 0);
         System.out.println(max);
         System.out.println(min);
     }
