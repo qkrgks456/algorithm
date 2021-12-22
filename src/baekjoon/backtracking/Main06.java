@@ -52,6 +52,8 @@ public class Main06 {
         recursion(row, col + 1);
     }
 
+
+    // 이거 체크하는것까지는 구현 할 수 있다
     public static boolean check(int num, int row, int col) {
         // 행에 있는지
         for (int i = 0; i < 9; i++) {
