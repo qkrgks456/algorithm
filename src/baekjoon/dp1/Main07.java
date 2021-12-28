@@ -19,10 +19,6 @@ public class Main07 {
         if (n >= 2) {
             ch[2] = ints[1] + ints[2];
         }
-        // f(x) = max(g(x),h(x))
-        // g(x) = h(x-1) + arr[x]
-        // h(x) = max(g(x-2),h(x-2)) + arr[x]
-        // = f(x-2) + arr[x]
         System.out.println(DFS(n));
     }
 
