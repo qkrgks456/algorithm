@@ -15,14 +15,13 @@ public class Main10 {
         if (n != 1) {
             ch[2] = ints[1] + ints[2];
         }
-        for (int i = 3; i < n; i++) {
-            ch[i] = Math.max(Math.max(ch[i - 1], ch[i - 3] + ints[i - 1] + ints[i]), ch[i - 2] + ints[i]);
+        for (int i = 3; i <= n; i++) {
+            ch[i] = Math.max(ch[i - 3] + ints[i - 1] + ints[i], Math.max(ch[i - 1], ch[i - 2] + ints[i]));
         }
         if (n != 1) {
             System.out.println(ch[n]);
         } else {
             System.out.println(ch[1]);
         }
-
     }
 }
