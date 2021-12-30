@@ -1,11 +1,13 @@
 package baekjoon.dp1;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
+
+// 진짜 너무 어렵다 이거는
+// 골3의 문제인가 이게
+// 풀이봐도 이해도 안되고 그냥 화딱지 개나네
+// LIS 활용이라는데 LIS를 이해하지 못한건가 너무 어렵네
 public class Main12 {
-    static ArrayList<Integer> list = new ArrayList<>();
-    static ArrayList<Integer> list2 = new ArrayList<>();
     static int[] ints, ch1, ch2;
 
     public static void main(String[] args) {
@@ -17,39 +19,27 @@ public class Main12 {
         for (int i = 0; i < n; i++) {
             ints[i] = scanner.nextInt();
         }
-        list.add(ints[0]);
-        list2.add(ints[0]);
-        for (int i = 1; i < n; i++) {
-            // 증가 수열 최대
-            first(i);
-            // 감소 수열 최대
-            second(i);
-        }
-    }
 
-    public static void first(int num) {
-        if (ints[num] > list.get(list.size() - 1)) {
-            list.add(ints[num]);
-        } else {
-            for (int j = 0; j < list.size(); j++) {
-                if (list.get(j) >= ints[num]) {
-                    list.set(j, ints[num]);
-                    break;
+        for (int i = 0; i < n; i++) {
+            ch1[i] = 1;
+            for (int j = 0; j < i; j++) {
+                if (ints[i] > ints[j] && ch1[i] < ch1[j] + 1) {
+                    ch1[i] = ch1[j] + 1;
                 }
             }
         }
-    }
-
-    public static void second(int num) {
-        if (ints[num] < list2.get(list2.size() - 1)) {
-            list2.add(ints[num]);
-        } else {
-            for (int j = 0; j < list.size(); j++) {
-                if (list2.get(j) <= ints[num]) {
-                    list2.set(j, ints[num]);
-                    break;
+        for (int i = n - 1; i >= 0; i--) {
+            ch2[i] = 1;
+            for (int j = n - 1; j > i; j--) {
+                if (ints[i] > ints[j] && ch2[i] < ch2[j] + 1) {
+                    ch2[i] = ch2[j] + 1;
                 }
             }
         }
+        int max = 0;
+        for (int i = 0; i < n; i++) {
+            max = Math.max(ch1[i] + ch2[i], max);
+        }
+        System.out.println(max - 1);
     }
 }
