@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class Main08 {
     public static void main(String[] args) {
+        // 이전 연산에 1을 더할지
+        // 아 이거는 그림으로 그려야 된다
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
         int[] ints = new int[n + 1];

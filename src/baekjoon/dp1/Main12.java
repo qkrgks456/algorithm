@@ -23,11 +23,13 @@ public class Main12 {
         for (int i = 0; i < n; i++) {
             ch1[i] = 1;
             for (int j = 0; j < i; j++) {
+                // 여기 두번째 조건이 핵 킹 받는다
                 if (ints[i] > ints[j] && ch1[i] < ch1[j] + 1) {
                     ch1[i] = ch1[j] + 1;
                 }
             }
         }
+        // 거꾸로는 알겠다
         for (int i = n - 1; i >= 0; i--) {
             ch2[i] = 1;
             for (int j = n - 1; j > i; j--) {
