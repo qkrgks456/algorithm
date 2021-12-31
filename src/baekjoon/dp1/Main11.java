@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class Main11 {
     public static void main(String[] args) {
+        // LIS 구하기 (최장 증가 수열)
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
         int[] ints = new int[n];

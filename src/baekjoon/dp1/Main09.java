@@ -4,6 +4,10 @@ import java.util.Scanner;
 
 public class Main09 {
     public static void main(String[] args) {
+        // 규칙성이 있다
+        // 0번은 이전 1번 9번은 이전 8번갯수
+        // 나머지는 n-1 + n+1
+        // 끝났으면 모듈러 연산 법칙에 따라서 a%n + b%n = (a+b)%n
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
         long[] ints = new long[10];
@@ -11,8 +15,7 @@ public class Main09 {
         for (int i = 0; i < ints.length; i++) {
             ints[i] = 1;
         }
-        // 0번은 이전 1번 9번은 이전 8번갯수
-        // 나머지는 n-1 + n+1
+
         boolean check = true;
         long sum = 0;
         if (n == 1) {

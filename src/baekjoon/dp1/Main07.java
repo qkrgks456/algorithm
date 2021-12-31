@@ -5,7 +5,11 @@ import java.util.Scanner;
 public class Main07 {
     static int[] ints;
     static int[] ch;
-
+    // 나중에 포도주랑 비슷한 메타인데
+    // 마지막을 무조건 밞아야 되서
+    //  OXO
+    // OXOO
+    // 이두가지 조건을 식으로 다운업도 될듯
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();

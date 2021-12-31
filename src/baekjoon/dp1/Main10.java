@@ -4,6 +4,11 @@ import java.util.Scanner;
 
 public class Main10 {
     public static void main(String[] args) {
+        // 포도주 메타 일텐데
+        // 3가지 조건 만족하는 가장 큰놈
+        // 0X0 <- 마지막 전잔 안 먹을때
+        // 0X00 <- 마지막 전잔 먹을때
+        // 0X <- 마지막 잔 안 먹을때
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
         int[] ints = new int[n + 1];
