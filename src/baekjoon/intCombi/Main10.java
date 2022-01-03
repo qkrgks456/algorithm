@@ -1,5 +1,6 @@
 package baekjoon.intCombi;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main10 {
@@ -8,13 +9,13 @@ public class Main10 {
         int n = scanner.nextInt();
         for (int i = 0; i < n; i++) {
             int n1 = scanner.nextInt();
-            String[][] strings = new String[n1][2];
+            HashMap<String, String> map = new HashMap<>();
             for (int j = 0; j < n1; j++) {
                 String s = scanner.nextLine();
-                String[] strings1 = s.split(" ");
-                strings[j][0] = strings1[0];
-                strings[j][1] = strings1[1];
+                String[] strings = s.split(" ");
+                map.put(strings[1], strings[0]);
             }
+            System.out.println(map);
             // 여기서 부터 하면되는데 ..
         }
     }
