@@ -14,7 +14,28 @@ public class Main04 {
                 break;
             }
             String[] strings = s.split("");
-
+            for (String s1 : strings) {
+                if (s1.equals("(") || s1.equals("[")) {
+                    stack.push(s1);
+                } else if (s1.equals(")")) {
+                    if (!stack.empty() && stack.peek().equals("(")) {
+                        stack.pop();
+                    } else {
+                        stack.push(s1);
+                    }
+                } else if (s1.equals("]")) {
+                    if (!stack.empty() && stack.peek().equals("[")) {
+                        stack.pop();
+                    } else {
+                        stack.push(s1);
+                    }
+                }
+            }
+            if (stack.empty()) {
+                System.out.println("yes");
+            } else {
+                System.out.println("no");
+            }
         }
     }
 }
