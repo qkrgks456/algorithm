@@ -18,37 +18,36 @@ public class Main06 {
             ints[i] = scanner.nextInt();
         }
         int count = 0;
-        int check = 0;
-        int frontResult = 0;
-        int backResult = 0;
         for (int i = 0; i < ints.length; i++) {
+            int check = 0;
             int front = deque.peekFirst();
-            int last = deque.peekLast();
             if (ints[i] == front) {
                 deque.pollFirst();
-            } else if (ints[i] == last) {
-                deque.pollLast();
             } else {
-                while (true) {
-                    int num = deque.pollFirst();
-                    deque.addLast(num);
-                    if (last == num) {
+                for (int num : deque) {
+                    if (num == ints[i]) {
                         break;
-                    } else if (num == ints[i]) {
-                        frontResult = check;
                     }
                     check++;
                 }
-                while (true) {
-                    int num = deque.pollLast();
-                    deque.addFirst(num);
-                    if (last == num) {
-                        break;
-                    } else if (num == ints[i]) {
-                        backResult = check;
+                if (deque.size() - check > check) {
+                    while (true) {
+                        int n2 = deque.pollFirst();
+                        if (n2 == ints[i]) {
+                            break;
+                        }
+                        deque.addLast(n2);
+                        count++;
                     }
-                    check++;
-                    System.out.println(frontResult + " " + backResult);
+                } else {
+                    while (true) {
+                        int n2 = deque.pollLast();
+                        count++;
+                        if (n2 == ints[i]) {
+                            break;
+                        }
+                        deque.addFirst(n2);
+                    }
                 }
             }
         }
