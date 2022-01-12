@@ -19,6 +19,7 @@ public class Main04 {
         System.out.println(DFS(b));
     }
 
+    // 지수법칙이랑 모듈러 연산법칙 잘 활용하면 됨
     public static long DFS(long b) {
         if (b == 1) {
             return a % c;
