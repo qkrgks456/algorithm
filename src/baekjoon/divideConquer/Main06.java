@@ -7,24 +7,38 @@ public class Main06 {
         Scanner scanner = new Scanner(System.in);
         int[][] first;
         int[][] second;
-        for (int i = 0; i < 2; i++) {
-            int n = scanner.nextInt();
-            int n1 = scanner.nextInt();
-            if (i == 0) {
-                first = new int[n][n1];
-                for (int j = 0; j < n; j++) {
-                    for (int k = 0; k < n1; k++) {
-                        first[j][k] = scanner.nextInt();
-                    }
-                }
-            } else {
-                second = new int[n][n1];
-                for (int j = 0; j < n; j++) {
-                    for (int k = 0; k < n1; k++) {
-                        second[j][k] = scanner.nextInt();
-                    }
+        int[][] result;
+        int n = scanner.nextInt();
+        int m = scanner.nextInt();
+        first = new int[n][m];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                first[i][j] = scanner.nextInt();
+            }
+        }
+        int num = scanner.nextInt();
+        int k = scanner.nextInt();
+        second = new int[num][k];
+        for (int i = 0; i < num; i++) {
+            for (int j = 0; j < k; j++) {
+                second[i][j] = scanner.nextInt();
+            }
+        }
+        result = new int[n][k];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < k; j++) {
+                for (int l = 0; l < m; l++) {
+                    result[i][j] += first[i][l] * second[l][j];
                 }
             }
         }
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < k; j++) {
+                stringBuilder.append(result[i][j] + " ");
+            }
+            stringBuilder.append("\n");
+        }
+        System.out.print(stringBuilder);
     }
 }
