@@ -3,9 +3,8 @@ package baekjoon.binarySearch;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.Scanner;
 
-public class Main01 {
+public class Main02 {
     public static void main(String[] args) throws Exception {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder stringBuilder = new StringBuilder();
@@ -28,16 +27,9 @@ public class Main01 {
             int l = 0;
             int r = n - 1;
             int mid = r / 2;
-            boolean check = true;
-            if (ints[l] == ints1[i] || ints[r] == ints1[i]) {
-                stringBuilder.append(1 + "\n");
-                continue;
-            }
-            while (l != r - 1) {
+            while (true) {
                 if (ints[mid] == ints1[i]) {
-                    check = false;
-                    stringBuilder.append(1 + "\n");
-                    break;
+
                 } else if (ints[mid] < ints1[i]) {
                     l = mid;
                 } else if (ints[mid] > ints1[i]) {
@@ -45,10 +37,6 @@ public class Main01 {
                 }
                 mid = (l + r) / 2;
             }
-            if (check) {
-                stringBuilder.append(0 + "\n");
-            }
         }
-        System.out.println(stringBuilder);
     }
 }
