@@ -3,6 +3,7 @@ package baekjoon.divideConquer;
 import java.util.Scanner;
 
 public class Main06 {
+    // 행렬 받는거 은근 빡치네
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         int[][] first;
