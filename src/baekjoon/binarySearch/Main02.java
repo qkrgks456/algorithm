@@ -5,11 +5,15 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 
 public class Main02 {
+    static int n;
+    static int[] ints;
+    static int[] ints1;
+
     public static void main(String[] args) throws Exception {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder stringBuilder = new StringBuilder();
-        int n = Integer.parseInt(bufferedReader.readLine());
-        int[] ints = new int[n];
+        n = Integer.parseInt(bufferedReader.readLine());
+        ints = new int[n];
         String s = bufferedReader.readLine();
         String[] strings = s.split(" ");
         for (int i = 0; i < n; i++) {
@@ -19,24 +23,39 @@ public class Main02 {
         int m = Integer.parseInt(bufferedReader.readLine());
         String s1 = bufferedReader.readLine();
         String[] strings1 = s1.split(" ");
-        int[] ints1 = new int[m];
+        ints1 = new int[m];
         for (int i = 0; i < m; i++) {
             ints1[i] = Integer.parseInt(strings1[i]);
+            stringBuilder.append(back(ints1[i]) - front(ints1[i]) + " ");
         }
-        for (int i = 0; i < ints1.length; i++) {
-            int l = 0;
-            int r = n - 1;
-            int mid = r / 2;
-            while (true) {
-                if (ints[mid] == ints1[i]) {
+        System.out.println(stringBuilder);
+    }
 
-                } else if (ints[mid] < ints1[i]) {
-                    l = mid;
-                } else if (ints[mid] > ints1[i]) {
-                    r = mid;
-                }
-                mid = (l + r) / 2;
+    public static int front(int num) {
+        int l = 0;
+        int r = n;
+        while (l < r) {
+            int mid = (l + r) / 2;
+            if (ints[mid] < num) {
+                l = mid + 1;
+            } else {
+                r = mid;
             }
         }
+        return l;
+    }
+
+    public static int back(int num) {
+        int l = 0;
+        int r = n;
+        while (l < r) {
+            int mid = (l + r) / 2;
+            if (ints[mid] <= num) {
+                l = mid + 1;
+            } else {
+                r = mid;
+            }
+        }
+        return l;
     }
 }
