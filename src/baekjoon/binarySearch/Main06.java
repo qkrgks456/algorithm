@@ -11,6 +11,19 @@ public class Main06 {
         int k = scanner.nextInt();
         int l = 1;
         int r = n * n + 1;
+        while (l < r) {
+            int mid = (l + r) / 2;
+            int count = 0;
+            for (int i = 1; i <= n; i++) {
+                if (mid / i > n) {
+                    count += n;
+                } else {
+                    count += (mid / i);
+                }
+            }
+            if (count <= k) {
 
+            }
+        }
     }
 }
