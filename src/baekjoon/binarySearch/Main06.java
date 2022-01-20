@@ -6,11 +6,12 @@ public class Main06 {
     public static void main(String[] args) {
         // 배열 못만듬 절대 안됨
         // 다른 방법을 찾아야 함
+        // 거의다 됐는데 사부럴꺼
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
         int k = scanner.nextInt();
         int l = 1;
-        int r = n * n + 1;
+        int r = k;
         while (l < r) {
             int mid = (l + r) / 2;
             int count = 0;
@@ -21,9 +22,12 @@ public class Main06 {
                     count += (mid / i);
                 }
             }
-            if (count <= k) {
-
+            if (count >= k) {
+                r = mid;
+            } else {
+                l = mid + 1;
             }
         }
+        System.out.println(l);
     }
 }
