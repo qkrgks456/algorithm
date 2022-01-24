@@ -8,6 +8,7 @@
 <input type="button" value="버튼" id="btn">
 </body>
 <script>
+    console.log(location.origin)
     document.getElementById("btn").addEventListener("click", (e) => {
         fetch("http://localhost:8100/hello", {
             method: "POST",
