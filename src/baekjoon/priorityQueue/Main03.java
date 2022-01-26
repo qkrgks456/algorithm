@@ -34,8 +34,14 @@ class AbsHeap {
     public void insert(int num) {
         list.add(num);
         int idx = list.size() - 1;
-        while (idx > 1 && Math.abs(list.get(idx)) < Math.abs(list.get(idx / 2))) {
-            swap(idx, list.get(idx / 2));
+        while (idx > 1) {
+            if (Math.abs(list.get(idx)) < Math.abs(list.get(idx / 2))) {
+                swap(idx, idx / 2);
+            } else if (Math.abs(list.get(idx)) == Math.abs(list.get(idx / 2))) {
+                if (list.get(idx) < list.get(idx / 2)) {
+                    swap(idx, idx / 2);
+                }
+            }
             idx /= 2;
         }
     }
@@ -48,16 +54,29 @@ class AbsHeap {
         list.set(1, list.get(list.size() - 1));
         list.remove(list.size() - 1);
         int idx = 1;
-        while (idx < list.size()) {
+        while (idx * 2 < list.size()) {
             int checkIdx = idx * 2;
             if (idx * 2 + 1 < list.size() && Math.abs(list.get(idx * 2)) > Math.abs(list.get(idx * 2 + 1))) {
                 checkIdx = idx * 2 + 1;
+            } else if (idx * 2 + 1 < list.size() && Math.abs(list.get(idx * 2)) < Math.abs(list.get(idx * 2 + 1))) {
+                checkIdx = idx * 2;
+            } else if (idx * 2 + 1 < list.size()) {
+                if (list.get(idx * 2) > list.get(idx * 2 + 1)) {
+                    checkIdx = idx * 2 + 1;
+                }
             }
             if (Math.abs(list.get(checkIdx)) > Math.abs(list.get(idx))) {
                 break;
-            } else {
+            } else if (Math.abs(list.get(checkIdx)) < Math.abs(list.get(idx))) {
                 swap(checkIdx, idx);
                 idx = checkIdx;
+            } else {
+                if (list.get(checkIdx) > list.get(idx)) {
+                    break;
+                } else {
+                    swap(checkIdx, idx);
+                    idx = checkIdx;
+                }
             }
         }
         return deleteNum;

@@ -40,6 +40,10 @@ class MinHeap {
         }
     }
 
+    public int size() {
+        return list.size();
+    }
+
     public int delete() {
         if (list.size() == 1) {
             return 0;
