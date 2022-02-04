@@ -11,7 +11,7 @@ public class UrlEncodePro {
             if (s.equals("0")) {
                 break;
             }
-            String s1 = URLEncoder.encode(s, StandardCharsets.UTF_8);
+            String s1 = URLEncoder.encode(s, String.valueOf(StandardCharsets.UTF_8));
             System.out.println(s1);
             // String result = s1.replaceAll("%3A", "\\:").replaceAll("%2F", "\\/");
         }
