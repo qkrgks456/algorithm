@@ -5,41 +5,43 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main01 {
+public class Main02 {
     public static void main(String[] args) throws Exception {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(bufferedReader.readLine());
-        MaxHeap maxHeap = new MaxHeap();
+        MinHeap minHeap = new MinHeap();
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < n; i++) {
             int num = Integer.parseInt(bufferedReader.readLine());
             if (num == 0) {
-                stringBuilder.append(maxHeap.delete() + "\n");
+                stringBuilder.append(minHeap.delete() + "\n");
             } else {
-                maxHeap.insert(num);
+                minHeap.insert(num);
             }
         }
         System.out.println(stringBuilder);
     }
-
 }
 
-class MaxHeap {
-    // 이건 나중에 영상봐야겠다
+class MinHeap {
     public List<Integer> list;
 
-    public MaxHeap() {
+    public MinHeap() {
         list = new ArrayList<>();
-        list.add(-1);
+        list.add(0);
     }
 
     public void insert(int num) {
         list.add(num);
-        int newIndex = list.size() - 1;
-        while (newIndex > 1 && list.get(newIndex) > list.get(newIndex / 2)) {
-            swap(newIndex / 2, newIndex);
-            newIndex /= 2;
+        int idx = list.size() - 1;
+        while (idx > 1 && list.get(idx) < list.get(idx / 2)) {
+            swap(idx / 2, idx);
+            idx /= 2;
         }
+    }
+
+    public int size() {
+        return list.size();
     }
 
     public int delete() {
@@ -51,13 +53,11 @@ class MaxHeap {
         list.remove(list.size() - 1);
         int idx = 1;
         while (idx * 2 < list.size()) {
-            int checkIdx = idx * 2; // 왼쪽 녀석 인덱스
-            // 오른쪽 녀석이 있고 오른쪽 녀석이 더 크다면
-            if (idx * 2 + 1 < list.size() && list.get(idx * 2) < list.get(idx * 2 + 1)) {
+            int checkIdx = idx * 2;
+            if (idx * 2 + 1 < list.size() && list.get(idx * 2) > list.get(idx * 2 + 1)) {
                 checkIdx = idx * 2 + 1;
             }
-            // 부모가 자식보다 크다면 멈춰 !
-            if (list.get(idx) > list.get(checkIdx)) {
+            if (list.get(idx) < list.get(checkIdx)) {
                 break;
             } else {
                 swap(idx, checkIdx);
