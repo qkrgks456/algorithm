@@ -7,10 +7,10 @@ public class Main1244 {
     public static void main(String[] args) throws Exception {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(bufferedReader.readLine());
-        int[] ints = new int[n];
+        int[] ints = new int[n + 1];
         String[] strings = bufferedReader.readLine().split(" ");
-        for (int i = 0; i < ints.length; i++) {
-            ints[i] = Integer.parseInt(strings[i]);
+        for (int i = 1; i < ints.length; i++) {
+            ints[i] = Integer.parseInt(strings[i - 1]);
         }
         int n1 = Integer.parseInt(bufferedReader.readLine());
         for (int i = 0; i < n1; i++) {
@@ -51,10 +51,14 @@ public class Main1244 {
                     rt++;
                 }
             }
-            for (int j = 0; j < ints.length; j++) {
-                System.out.print(ints[i] + " ");
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 1; i < ints.length; i++) {
+            stringBuilder.append(ints[i] + " ");
+            if (i % 20 == 0) {
+                stringBuilder.append("\n");
             }
         }
-
+        System.out.println(stringBuilder);
     }
 }
