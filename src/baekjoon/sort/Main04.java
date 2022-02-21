@@ -16,18 +16,10 @@ public class Main04 {
         Collections.sort(list);
         int max = list.get(list.size() - 1);
         int min = list.get(0);
-        int lt = 0;
-        int rt = list.size() - 1;
         double sum = 0;
         // 산술평균 구하기
-        while (true) {
-            if (lt == rt) {
-                sum += list.get(lt);
-                break;
-            }
-            sum += list.get(lt) + list.get(rt);
-            lt++;
-            rt--;
+        for (int num : list) {
+            sum += num;
         }
         // 최빈수 구하기
         int[] arr = new int[8001];
@@ -46,7 +38,7 @@ public class Main04 {
         }
 
         // 산술평균 o
-        System.out.println(String.format("%.0f", sum / n));
+        System.out.println(Math.round(sum / n));
 
         // 중앙값 o
         if (n != 1) {
