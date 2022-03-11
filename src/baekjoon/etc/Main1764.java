@@ -2,28 +2,34 @@ package baekjoon.etc;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.HashMap;
+import java.util.*;
 
 public class Main1764 {
     public static void main(String[] args) throws Exception {
-        HashMap<Integer,Integer> map = new HashMap<>();
-        map.put(1,3);
-        /*System.out.println(map.get());*/
-        /*BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         String[] strings = bufferedReader.readLine().split(" ");
-        HashMap<String, Integer> map = new HashMap<>();
+        Map<String, Integer> map = new HashMap();
+        List<String> list = new ArrayList<>();
+        StringBuilder stringBuilder = new StringBuilder();
         int n = Integer.parseInt(strings[0]);
         int m = Integer.parseInt(strings[1]);
         for (int i = 0; i < n; i++) {
-            map.put(bufferedReader.readLine(), 1);
+            String s = bufferedReader.readLine();
+            map.put(s, 1);
         }
         for (int i = 0; i < m; i++) {
             String s = bufferedReader.readLine();
             if (map.get(s) != null) {
-
+                if (map.get(s) == 1) {
+                    list.add(s);
+                }
             }
-        }*/
-
-
+        }
+        Collections.sort(list);
+        stringBuilder.append(list.size() + "\n");
+        for (String s : list) {
+            stringBuilder.append(s + "\n");
+        }
+        System.out.println(stringBuilder);
     }
 }
