@@ -1,29 +1,14 @@
 package baekjoon.etc;
 
-import java.awt.*;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.LinkedList;
-import java.util.Queue;
-
-class ThreePoint {
-    public int x;
-    public int y;
-    public int status;
-
-    public ThreePoint(int x, int y, int status) {
-        this.x = x;
-        this.y = y;
-        this.status = status;
-    }
-}
 
 public class Main14503 {
-    static int[] dx = {1, 0, 0, -1};
-    static int[] dy = {0, 1, -1, 0};
-    static int[][] ints, check;
+    static int[] dx = {-1, 0, 1, 0};
+    static int[] dy = {0, 1, 0, -1};
+    static int[][] ints;
     static int n, m;
-    static int result = 0;
+    static int result = 1;
 
     public static void main(String[] args) throws Exception {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
@@ -35,86 +20,43 @@ public class Main14503 {
         int startY = Integer.parseInt(strings1[1]);
         int status = Integer.parseInt(strings1[2]);
         ints = new int[n][m];
-        check = new int[n][m];
         for (int i = 0; i < n; i++) {
             String[] strings2 = bufferedReader.readLine().split(" ");
             for (int j = 0; j < m; j++) {
                 ints[i][j] = Integer.parseInt(strings2[j]);
-                check[i][j] = Integer.parseInt(strings2[j]);
             }
         }
-        BFS(startX, startY, status);
+        DFS(startX, startY, status);
         System.out.println(result);
     }
 
-    public static void BFS(int x, int y, int st) {
+    public static void DFS(int x, int y, int st) {
         // 0 북 1 동 2 남 3 서
-        Queue<ThreePoint> queue = new LinkedList<>();
-        queue.add(new ThreePoint(x, y, st));
-        result++;
-        check[x][y] = 1;
-        while (!queue.isEmpty()) {
-            ThreePoint point = queue.poll();
-            if (point.x + 1 < n && point.x - 1 >= 0 && point.y + 1 < m && point.y - 1 >= 0) {
-                if (check[point.x + 1][point.y] == 1 && check[point.x - 1][point.y] == 1 && check[point.x][point.y + 1] == 1 && check[point.x][point.y - 1] == 1) {
-                    if (point.status == 0) {
-                        if (ints[point.x + 1][point.y] == 1) {
-                            break;
-                        }
-                        queue.add(new ThreePoint(point.x + 1, point.y, 0));
-                    } else if (point.status == 1) {
-                        if (ints[point.x - 1][point.y] == 1) {
-                            break;
-                        }
-                        queue.add(new ThreePoint(point.x - 1, point.y, 1));
-                    } else if (point.status == 2) {
-                        if (ints[point.x][point.y - 1] == 1) {
-                            break;
-                        }
-                        queue.add(new ThreePoint(point.x, point.y - 1, 2));
-                    } else {
-                        if (ints[point.x][point.y + 1] == 1) {
-                            break;
-                        }
-                        queue.add(new ThreePoint(point.x, point.y + 1, 3));
-                    }
-                } else {
-                    if (point.status == 0) {
-                        if (check[point.x - 1][point.y] == 0) {
-                            check[point.x - 1][point.y] = 1;
-                            result++;
-                            queue.add(new ThreePoint(point.x - 1, point.y, 3));
-                        } else {
-                            queue.add(new ThreePoint(point.x, point.y, 3));
-                        }
-                    } else if (point.status == 1) {
-                        if (check[point.x][point.y - 1] == 0) {
-                            check[point.x][point.y - 1] = 1;
-                            result++;
-                            queue.add(new ThreePoint(point.x, point.y - 1, 3));
-                        } else {
-                            queue.add(new ThreePoint(point.x, point.y, 3));
-                        }
-                    } else if (point.status == 2) {
-                        if (check[point.x][point.y + 1] == 0) {
-                            check[point.x][point.y + 1] = 1;
-                            result++;
-                            queue.add(new ThreePoint(point.x, point.y + 1, 3));
-                        } else {
-                            queue.add(new ThreePoint(point.x, point.y, 3));
-                        }
-                    } else {
-                        if (check[point.x + 1][point.y] == 0) {
-                            check[point.x + 1][point.y] = 1;
-                            result++;
-                            queue.add(new ThreePoint(point.x + 1, point.y, 3));
-                        } else {
-                            queue.add(new ThreePoint(point.x, point.y, 3));
-                        }
-                    }
+        ints[x][y] = 2;
+        // 왼쪽 방향 처리 완료
+        for (int i = 0; i < 4; i++) {
+            // 북같은경우 1빼면 -1이기 때문에 3(서)로 넣어준다
+            st -= 1;
+            if (st == -1) {
+                st = 3;
+            }
+            int nx = x + dx[st];
+            int ny = y + dy[st];
+            if (nx >= 0 && ny >= 0 && nx < n && ny < m) {
+                if (ints[nx][ny] == 0) {
+                    result++;
+                    DFS(nx, ny, st);
+                    return;
                 }
             }
-
         }
+        // 모든 방향이 없을경우
+        int back = (st + 2) % 4;
+        int bx = x + dx[back];
+        int by = y + dy[back];
+        if (bx >= 0 && by >= 0 && bx < n && by < m && ints[bx][by] != 1) {
+            DFS(bx, by, st);
+        }
+
     }
 }
