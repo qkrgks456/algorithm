@@ -11,8 +11,8 @@ public class Main17140 {
     public static void main(String[] args) throws Exception {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         String[] strings = bufferedReader.readLine().split(" ");
-        int r = Integer.parseInt(strings[0]);
-        int c = Integer.parseInt(strings[1]);
+        int r = Integer.parseInt(strings[0]) - 1;
+        int c = Integer.parseInt(strings[1]) - 1;
         int k = Integer.parseInt(strings[2]);
         ints = new int[3][3];
         for (int i = 0; i < 3; i++) {
@@ -21,7 +21,7 @@ public class Main17140 {
                 ints[i][j] = Integer.parseInt(strings1[j]);
             }
         }
-        System.out.println(cul(r - 1, c - 1, k));
+        System.out.println(cul(r, c, k));
     }
 
     public static int cul(int r, int c, int k) {
@@ -32,9 +32,12 @@ public class Main17140 {
                 return -1;
             }
             // 해당 자리에 k가 왔다면
-            if (ints[r][c] == k) {
-                return count;
+            if (r < ints.length && c < ints[0].length) {
+                if (ints[r][c] == k) {
+                    return count;
+                }
             }
+
             List<List<Integer>> list = new ArrayList<>();
             if (ints[0].length <= ints.length) {
                 // 연산 R
@@ -107,13 +110,13 @@ public class Main17140 {
                     }
                 }
             }
-            for (int i = 0; i < ints.length; i++) {
+            /*for (int i = 0; i < ints.length; i++) {
                 for (int j = 0; j < ints[i].length; j++) {
                     System.out.print(ints[i][j] + " ");
                 }
                 System.out.println();
             }
-            System.out.println();
+            System.out.println();*/
             count++;
         }
     }
