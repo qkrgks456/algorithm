@@ -28,7 +28,7 @@ public class Main17140 {
         int count = 0;
         while (true) {
             // 100번 넘으면
-            if (count >= 100) {
+            if (count > 100) {
                 return -1;
             }
             // 해당 자리에 k가 왔다면
@@ -39,9 +39,9 @@ public class Main17140 {
             }
 
             List<List<Integer>> list = new ArrayList<>();
+            int max = Integer.MIN_VALUE;
             if (ints[0].length <= ints.length) {
                 // 연산 R
-                int rowMax = Integer.MIN_VALUE;
                 for (int i = 0; i < ints.length; i++) {
                     Map<Integer, Integer> map = new HashMap<>();
                     for (int j = 0; j < ints[i].length; j++) {
@@ -54,16 +54,19 @@ public class Main17140 {
                         }
                     }
                     List sortAndInsert = sortAndInsert(map);
-                    if (rowMax < sortAndInsert.size()) {
-                        rowMax = sortAndInsert.size();
+                    if (max < sortAndInsert.size()) {
+                        max = sortAndInsert.size();
                     }
                     list.add(sortAndInsert);
                 }
                 int num = ints.length;
-                if (rowMax > 100) {
-                    rowMax = 100;
+                int num2 = ints[0].length;
+                if (max > 100) {
+                    max = 100;
+                } else if (max < num2) {
+                    max = num2;
                 }
-                ints = new int[num][rowMax];
+                ints = new int[num][max];
                 for (int i = 0; i < num; i++) {
                     List<Integer> integers = list.get(i);
                     int size = integers.size();
@@ -76,7 +79,6 @@ public class Main17140 {
                 }
             } else {
                 // 연산 C
-                int colMax = Integer.MIN_VALUE;
                 for (int i = 0; i < ints[0].length; i++) {
                     Map<Integer, Integer> map = new HashMap<>();
                     for (int j = 0; j < ints.length; j++) {
@@ -89,16 +91,19 @@ public class Main17140 {
                         }
                     }
                     List sortAndInsert = sortAndInsert(map);
-                    if (colMax < sortAndInsert.size()) {
-                        colMax = sortAndInsert.size();
+                    if (max < sortAndInsert.size()) {
+                        max = sortAndInsert.size();
                     }
                     list.add(sortAndInsert);
                 }
                 int num = ints[0].length;
-                if (colMax > 100) {
-                    colMax = 100;
+                int num2 = ints.length;
+                if (max > 100) {
+                    max = 100;
+                } else if (max < num2) {
+                    max = num2;
                 }
-                ints = new int[colMax][num];
+                ints = new int[max][num];
                 for (int i = 0; i < num; i++) {
                     List<Integer> integers = list.get(i);
                     int size = integers.size();
@@ -110,25 +115,23 @@ public class Main17140 {
                     }
                 }
             }
-            /*for (int i = 0; i < ints.length; i++) {
-                for (int j = 0; j < ints[i].length; j++) {
-                    System.out.print(ints[i][j] + " ");
-                }
-                System.out.println();
-            }
-            System.out.println();*/
             count++;
         }
     }
 
     public static List sortAndInsert(Map<Integer, Integer> map) {
-        List<Integer> list = new ArrayList<>();
-        List<Entry<Integer, Integer>> sortList = new ArrayList<>(map.entrySet());
-        sortList.sort(Entry.comparingByValue());
-        for (Entry<Integer, Integer> entry : sortList) {
-            list.add(entry.getKey());
-            list.add(entry.getValue());
+        List<Entry<Integer, Integer>> list = new ArrayList<>(map.entrySet());
+        List<Integer> result = new ArrayList<>();
+        Collections.sort(list, (o1, o2) -> {
+            if (o1.getValue() == o2.getValue())
+                return o1.getKey().compareTo(o2.getKey());
+            else
+                return o1.getValue().compareTo(o2.getValue());
+        });
+        for (Entry<Integer, Integer> entry : list) {
+            result.add(entry.getKey());
+            result.add(entry.getValue());
         }
-        return list;
+        return result;
     }
 }
