@@ -19,31 +19,28 @@ public class Main5014 {
         g = Integer.parseInt(stringTokenizer.nextToken());
         u = Integer.parseInt(stringTokenizer.nextToken());
         d = Integer.parseInt(stringTokenizer.nextToken());
-        check = new int[f + 1];
         level = new int[f + 1];
-        BFS(s);
+        BFS();
     }
 
-    public static void BFS(int n) {
+    public static void BFS() {
         Queue<Integer> queue = new LinkedList<>();
-        queue.add(n);
-        check[n] = 1;
+        queue.add(s);
+        level[s] = 1;
         while (!queue.isEmpty()) {
             int num = queue.poll();
             if (num == g) {
-                System.out.println(level[num]);
+                System.out.println(level[num] - 1);
                 return;
             }
-            if (num - d >= 0) {
-                if (check[num - d] == 0) {
-                    check[num - d] = 1;
+            if (num - d > 0) {
+                if (level[num - d] == 0) {
                     level[num - d] = level[num] + 1;
                     queue.add(num - d);
                 }
             }
-            if (num + u < f) {
-                if (check[num + u] == 0) {
-                    check[num + u] = 1;
+            if (num + u <= f) {
+                if (level[num + u] == 0) {
                     level[num + u] = level[num] + 1;
                     queue.add(num + u);
                 }
