@@ -6,7 +6,7 @@ import java.util.StringTokenizer;
 
 public class Main15684 {
     static int N, M, H, result;
-    static int[][] ints, check, check2;
+    static int[][] ints, check;
     static boolean answer;
 
     public static void main(String[] args) throws Exception {
@@ -25,12 +25,8 @@ public class Main15684 {
         }
         result = 0;
         while (true) {
-            check2 = new int[H][N];
+            check = new int[H][N];
             stick(0, 0, 0);
-            if (answer) {
-                System.out.println(result);
-                break;
-            }
             result++;
             if (result > 3) {
                 System.out.println(-1);
@@ -42,23 +38,26 @@ public class Main15684 {
     public static void stick(int count, int x, int y) {
         if (count == result) {
             for (int i = 0; i < N; i++) {
-                check = new int[H][N];
                 answer = false;
                 DFS(0, i, i);
                 if (!answer) {
                     break;
                 }
             }
+            if (answer) {
+                System.out.println(result);
+                System.exit(0);
+            }
             return;
         }
         for (int i = 0; i < H; i++) {
             for (int j = 0; j < N - 1; j++) {
-                if (check2[i][j] == 0 && ints[i][j] == 0 && ints[i][j + 1] == 0) {
-                    check2[i][j] = 1;
+                if (check[i][j] == 0 && ints[i][j] == 0 && ints[i][j + 1] == 0) {
+                    check[i][j] = 1;
                     ints[i][j] = 1;
                     ints[i][j + 1] = 1;
                     stick(count + 1, i, j);
-                    check2[i][j] = 0;
+                    check[i][j] = 0;
                     ints[i][j] = 0;
                     ints[i][j + 1] = 0;
                 }
@@ -73,28 +72,41 @@ public class Main15684 {
         if (x == H) {
             if (y == self) {
                 answer = true;
-                return;
             }
             return;
         }
 
-        if (check[x][y] == 0) {
-            check[x][y] = 1;
-            if (ints[x][y] == 1) {
-                if (y - 1 < 0) {
-                    DFS(x + 1, y + 1, self);
-                } else if (y + 1 >= N) {
-                    DFS(x + 1, y - 1, self);
-                } else {
-                    if (ints[x][y - 1] == 1) {
-                        DFS(x + 1, y - 1, self);
-                    } else if (ints[x][y + 1] == 1) {
-                        DFS(x + 1, y + 1, self);
-                    }
-                }
+        if (ints[x][y] == 1) {
+            if (y - 1 < 0) {
+                DFS(x + 1, y + 1, self);
+            } else if (y + 1 >= N) {
+                DFS(x + 1, y - 1, self);
             } else {
-                DFS(x + 1, y, self);
+                if (ints[x][y + 1] == 1 && ints[x][y - 1] == 1) {
+                    // 여기 어떡해 너무 열받아 이거 해결되면 끝인데 진짜 아오
+                    int i = 0;
+                    while (i < N - 1) {
+                        if (ints[x][i] == 1) {
+                            if (y == i) {
+                                DFS(x + 1, y + 1, self);
+                                break;
+                            } else if (y == i + 1) {
+                                DFS(x + 1, y - 1, self);
+                                break;
+                            }
+                            i += 2;
+                        } else {
+                            i++;
+                        }
+                    }
+                } else if (ints[x][y - 1] == 1) {
+                    DFS(x + 1, y - 1, self);
+                } else if (ints[x][y + 1] == 1) {
+                    DFS(x + 1, y + 1, self);
+                }
             }
+        } else {
+            DFS(x + 1, y, self);
         }
     }
 }
