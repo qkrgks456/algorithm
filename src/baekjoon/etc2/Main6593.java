@@ -7,6 +7,8 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main6593 {
+    static StringBuilder stringBuilder = new StringBuilder();
+    static Queue<ThreePoint> queue;
     static ThreePoint arrive;
     static int L, R, C;
     static char[][][] chars;
@@ -28,7 +30,7 @@ public class Main6593 {
             chars = new char[L][R][C];
             ch = new int[L][R][C];
             result = new int[L][R][C];
-            Queue<ThreePoint> queue = new LinkedList<>();
+            queue = new LinkedList<>();
             for (int i = 0; i < L; i++) {
                 for (int j = 0; j < R; j++) {
                     String s = bufferedReader.readLine();
@@ -39,21 +41,40 @@ public class Main6593 {
                             queue.add(new ThreePoint(i, j, k));
                         } else if (chars[i][j][k] == 'E') {
                             arrive = new ThreePoint(i, j, k);
+                        } else if (chars[i][j][k] == '#') {
+                            ch[i][j][k] = 1;
                         }
                     }
                 }
                 bufferedReader.readLine();
             }
-            BFS(queue);
+            BFS();
         }
+        System.out.println(stringBuilder);
     }
 
-    public static void BFS(Queue<ThreePoint> queue) {
+    public static void BFS() {
+        int nz, nx, ny;
         while (!queue.isEmpty()) {
             ThreePoint point = queue.poll();
-
-
+            if (point.z == arrive.z && point.x == arrive.x && point.y == arrive.y) {
+                stringBuilder.append("Escaped in " + result[point.z][point.x][point.y] + " minute(s).");
+                stringBuilder.append("\n");
+                return;
+            }
+            for (int i = 0; i < 6; i++) {
+                nz = point.z + dz[i];
+                nx = point.x + dx[i];
+                ny = point.y + dy[i];
+                if (nz >= 0 && nx >= 0 && ny >= 0 && nz < L && nx < R && ny < C && ch[nz][nx][ny] == 0) {
+                    ch[nz][nx][ny] = 1;
+                    result[nz][nx][ny] = result[point.z][point.x][point.y] + 1;
+                    queue.add(new ThreePoint(nz, nx, ny));
+                }
+            }
         }
+        stringBuilder.append("Trapped!");
+        stringBuilder.append("\n");
     }
 }
 
