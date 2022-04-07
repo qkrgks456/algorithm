@@ -11,7 +11,7 @@ public class Main13459 {
     static int N, M, count;
     static int[] dx = {1, 0, -1, 0};
     static int[] dy = {0, -1, 0, 1};
-    static Point arrive, R;
+    static Point arrive, B;
     static char[][] chars;
     static int[][] ch;
     static Queue<Point> queue = new LinkedList<>();
@@ -31,10 +31,10 @@ public class Main13459 {
                     arrive = new Point(i, j);
                 } else if (chars[i][j] == 'R') {
                     ch[i][j] = 2;
-                    R = new Point(i, j);
+                    queue.add(new Point(i, j));
                 } else if (chars[i][j] == 'B') {
                     ch[i][j] = 2;
-                    queue.add(new Point(i, j));
+                    B = new Point(i, j);
                 } else if (chars[i][j] == '#') {
                     ch[i][j] = 1;
                 }
@@ -50,39 +50,49 @@ public class Main13459 {
                 nx = point.x + dx[i];
                 ny = point.y + dy[i];
                 if (nx >= 0 && ny >= 0 && nx < N && ny < M && ch[nx][ny] == 0) {
-                    count++;
                     if (i == 0) {
                         // 위
                         ch[point.x][point.y] = 0;
                         while (ch[nx][ny] < 1) {
+                            if (chars[nx][ny] == 'O') {
+                                System.exit(0);
+                            }
                             nx--;
                         }
-                        ch[nx + 1][ny] = 2;
+                        queue.add(new Point(nx + 1, ny));
                     } else if (i == 1) {
                         // 왼쪽
                         ch[point.x][point.y] = 0;
                         while (ch[nx][ny] < 1) {
+                            if (chars[nx][ny] == 'O') {
+                                System.exit(0);
+                            }
                             ny--;
                         }
-                        ch[nx][ny + 1] = 2;
+                        queue.add(new Point(nx, ny + 1));
                     } else if (i == 2) {
                         // 아래
                         ch[point.x][point.y] = 0;
                         while (ch[nx][ny] < 1) {
+                            if (chars[nx][ny] == 'O') {
+                                System.exit(0);
+                            }
                             nx++;
                         }
-                        ch[nx - 1][ny] = 2;
+                        queue.add(new Point(nx - 1, ny));
                     } else {
                         // 오른쪽
                         ch[point.x][point.y] = 0;
                         while (ch[nx][ny] < 1) {
+                            if (chars[nx][ny] == 'O') {
+                                System.exit(0);
+                            }
                             ny++;
                         }
-                        ch[nx][ny - 1] = 2;
+                        queue.add(new Point(nx, ny - 1));
                     }
                 }
             }
         }
     }
-
 }
