@@ -36,11 +36,12 @@ public class Main1713 {
                             check++;
                         }
                     }
-                    // 2개면 오래된놈 제거 아니면 최소값 제거
+                    // 오래된놈 제거 여기서 망했네 자료구조 엎어야한다 ㅋㅋ
                     if (check >= 2) {
                         list.remove(0);
                         list.add(new Member(member[i], 1));
                     } else {
+                        // 최소값제거
                         list.remove(idx);
                         list.add(idx, new Member(member[i], 1));
                     }
