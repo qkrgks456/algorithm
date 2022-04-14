@@ -37,12 +37,12 @@ public class Main1713 {
                         }
                     }
                     // 2개면 오래된놈 제거 아니면 최소값 제거
-                    if (check == 2) {
+                    if (check >= 2) {
                         list.remove(0);
                         list.add(new Member(member[i], 1));
                     } else {
                         list.remove(idx);
-                        list.add(new Member(member[i], 1));
+                        list.add(idx, new Member(member[i], 1));
                     }
                 }
             } else {
