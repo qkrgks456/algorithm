@@ -5,15 +5,23 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main11052 {
+    static int N;
+    static int[] ints, result;
+
     public static void main(String[] args) throws Exception {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        int N = Integer.parseInt(bufferedReader.readLine());
-        int[] ints = new int[N + 1];
-        int[] result = new int[N + 1];
+        N = Integer.parseInt(bufferedReader.readLine());
+        ints = new int[N + 1];
+        result = new int[N + 1];
         StringTokenizer stringTokenizer = new StringTokenizer(bufferedReader.readLine());
         for (int i = 1; i < ints.length; i++) {
             ints[i] = Integer.parseInt(stringTokenizer.nextToken());
         }
-        result[1] = ints[1] * N;
+        for (int i = 1; i < ints.length; i++) {
+            for (int j = 1; j <= i; j++) {
+                result[i] = Math.max(result[i], result[i - j] + ints[j]);
+            }
+        }
+        System.out.println(result[N]);
     }
 }
