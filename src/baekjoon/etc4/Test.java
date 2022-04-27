@@ -1,20 +1,29 @@
 package baekjoon.etc4;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+import java.util.Scanner;
 
 public class Test {
     public static void main(String[] args) throws Exception {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        int n = Integer.parseInt(bufferedReader.readLine());
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < n; i++) {
-            StringTokenizer stringTokenizer = new StringTokenizer(bufferedReader.readLine());
-            int n1 = Integer.parseInt(stringTokenizer.nextToken());
-            int n2 = Integer.parseInt(stringTokenizer.nextToken());
-            stringBuilder.append("Case #" + (i + 1) + ": " + n1 + " + " + n2 + " = " + (n1 + n2) + "\n");
-        }
-        System.out.println(stringBuilder);
+        int enum1, enum2;
+        float result;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("숫자1 입력:");
+        enum1 = sc.nextInt();
+        System.out.println("숫자2 입력:");
+        enum2 = sc.nextInt();
+        result = (float) enum1 / enum2;
+        System.out.println(enum1 + "/ " + enum2 + " = " + result);
+        System.out.println(result);
+        // UPGRADE
+        // 1
+        System.out.printf("%.2f", result);
+        System.out.println();
+        // 2
+        System.out.println(Math.round(result * 100) / 100.0);
+        // 3
+        System.out.println(String.format("%.2f", result));
+        // 4
+        int num = (int) result;
+        System.out.println(num + 0.33);
     }
 }
