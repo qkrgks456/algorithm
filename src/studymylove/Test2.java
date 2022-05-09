@@ -40,13 +40,14 @@ public class Test2 {
         tot = kor + eng + math;
         // 평균 구하기
         avg = (float) tot / 3;
+
         // 재시험 확인
-        // 0 국어 1 영어 2 수학
-        String[] check = new String[3];
-        boolean checks = false;
+        // 0 국어 1 영어 2 수학//★★★★★★★★★★★★★★★★★★★★★★★★★★★★ 이거 좋음
+        String[] check = new String[3]; // null,null,null(빈상태)
+        boolean checks = false;  //확인변수
         if (kor < 40) {
             check[0] = "kor";
-            checks = true;
+            checks = true;     //if 조건이 충족되면 true으로 바뀜
         }
         if (eng < 40) {
             check[1] = "eng";
@@ -56,15 +57,22 @@ public class Test2 {
             check[2] = "math";
             checks = true;
         }
-        if (checks) {
+        //각자 if를 준 이유는 하나하나 40점 미만을 체크하기 위해서
+        //else if를 주면 40점 미만인 과목이 생기면 다음 과목 확인 불가
+
+        if (checks) {   //위에서 true로 조건이 충족된 부분들은 이 코드가 실행됨
             String s = "";
-            for (int i = 0; i < 3; i++) {
-                if (check[i] != null) {
+            for (int i = 0; i < 3; i++) {   //배열 인덱스는 0부터 시작해서 i를 0으로 줌
+                if (check[i] != null) {   //40점이상은 null에 안담김 그래서 null에 담기면 s += check[i] + " "; 코드 실행
                     s += check[i] + " ";
                 }
             }
             System.out.println(s + "재시험");
-        }
+        }  //★★★★★★★★★★★★★★★★★★★★★★★★★★★★ 이거 좋음
+
+
+
+
         // 별 만들기
         String result = "";
         int nums = (int) Math.floor(avg) / 10;
