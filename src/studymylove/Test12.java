@@ -1,7 +1,5 @@
 package studymylove;
 
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Scanner;
 
 public class Test12 {
@@ -9,7 +7,7 @@ public class Test12 {
         String[][] users = new String[5][9];
         Scanner scanner = new Scanner(System.in);
         String name[] = {"아이언맨", "엄크", "엄틴", "엄르", "엄크아이"};
-        int[] kor = {100, 20, 90, 70, 100};
+        int[] kor = {100, 20, 90, 70, 35};
         int[] eng = {100, 50, 95, 80, 100};
         int[] math = {100, 30, 90, 60, 100};
         // 이름 점수 평균 넣기
@@ -23,7 +21,7 @@ public class Test12 {
             users[i][4] = String.valueOf(avg);
         }
         // 이차원 배열 정렬 -> 많이 어려우니 나중에 알려쥬께요
-        Arrays.sort(users, new Comparator<String[]>() {
+        /*Arrays.sort(users, new Comparator<String[]>() {
             @Override
             public int compare(String[] o1, String[] o2) {
                 int n1 = Integer.parseInt(o1[4]);
@@ -41,10 +39,17 @@ public class Test12 {
                 num++;
                 users[i][5] = String.valueOf(num);
             }
-        }
+        }*/
         // 여기부터 합격여부 장학생 랭킹
         for (int i = 0; i < 5; i++) {
             int avg = Integer.parseInt(users[i][4]);
+            int rank = 1;
+            for (int j = 0; j < 5; j++) {
+                if (avg < Integer.parseInt(users[j][4])) {
+                    rank++;
+                }
+            }
+            users[i][5] = String.valueOf(rank);
             if (avg >= 95) {
                 users[i][7] = "장학생";
             } else {
