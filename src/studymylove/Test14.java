@@ -1,26 +1,28 @@
 package studymylove;
 
+import java.util.Scanner;
+
 public class Test14 {
+
     public static void main(String[] args) {
-        hap(3, 5);
-        disp("7", "*");
-        disp("2", "♥");
+        Scanner scanner = new Scanner(System.in);
+        int a = scanner.nextInt();
+        int b = scanner.nextInt();
+        int c = scanner.nextInt();
+        System.out.println(max(a, b, c));
+
     }
 
-    public static void hap(int n1, int n2) {
-        int sum = 0;
-        for (int i = n1; i <= n2; i++) {
-            sum += i;
+    private static int max(int a, int b, int c) {
+        int result = 0;
+        if (a > b && a > c) {
+            result = a;
+        } else if (b > a && b > c) {
+            result = b;
+        } else {
+            result = c;
         }
-        System.out.println(sum);
+        return result;
     }
 
-    public static void disp(String s1, String s2) {
-        int n = Integer.parseInt(s1);
-        String s = "";
-        for (int i = 0; i < n; i++) {
-            s += s2;
-        }
-        System.out.println(s);
-    }
 }
