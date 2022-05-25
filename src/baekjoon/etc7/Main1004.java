@@ -24,15 +24,3 @@ public class Main1004 {
         }
     }
 }
-
-class Circle {
-    int x;
-    int y;
-    int r;
-
-    public Circle(int x, int y, int r) {
-        this.x = x;
-        this.y = y;
-        this.r = r;
-    }
-}
