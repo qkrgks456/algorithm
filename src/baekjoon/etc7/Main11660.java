@@ -33,7 +33,7 @@ public class Main11660 {
             int startY = Integer.parseInt(stringTokenizer.nextToken());
             int endX = Integer.parseInt(stringTokenizer.nextToken());
             int endY = Integer.parseInt(stringTokenizer.nextToken());
-            stringBuilder.append(result[endX][endY] - result[endY][startX - 1] - result[startY - 1][endX] + result[startX - 1][startY - 1] + "\n");
+            stringBuilder.append(result[endX][endY] - result[endX][startY - 1] - result[startX - 1][endY] + result[startX - 1][startY - 1] + "\n");
         }
         System.out.println(stringBuilder);
     }
