@@ -15,16 +15,16 @@ public class Main01 {
             ints[i][1] = Integer.parseInt(strings[1]);
         }
         Arrays.sort(ints, (o1, o2) -> {
-            if (o1[0] == o2[0]) {
-                return o2[1] - o1[1];
+            if (o1[1] == o2[1]) {
+                return o1[0] - o2[0];
             } else {
-                return o2[0] - o1[0];
+                return o1[1] - o2[1];
             }
         });
         int check = ints[0][1];
         int result = 1;
         for (int i = 1; i < n; i++) {
-            if (check < ints[i][1]) {
+            if (check <= ints[i][0]) {
                 result++;
                 check = ints[i][1];
             }
