@@ -1,6 +1,18 @@
 package mylove.studymylove4.inter;
 
-public interface Aver extends ScoreProcess {
+public class Aver implements ScoreProcess {
     @Override
-    double avg(int total);
+    public String exec(double aver) {
+        return null;
+    }
+
+    @Override
+    public int exec(int kor, int eng, int math) {
+        return 0;
+    }
+
+    @Override
+    public double exec(int total) {
+        return total / 3;
+    }
 }

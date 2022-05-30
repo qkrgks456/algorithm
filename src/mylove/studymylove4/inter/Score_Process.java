@@ -1,45 +1,18 @@
 package mylove.studymylove4.inter;
 
+import mylove.studymylove4.Score_ver2;
+
 // 왜 여러개를 만든지 모르곘습니다
-public class Score_Process implements ScoreProcess {
-    @Override
-    public String exec_jang(double aver) {
-        String s = "";
-        if (aver >= 95) {
-            s = "장학생";
-        } else {
-            s = "";
-        }
-        return s;
-    }
-
-    @Override
-    public String star(double aver) {
-        String s = "";
-        for (int i = 0; i < aver / 10; i++) {
-            s += "*";
-        }
-        return s;
-    }
-
-    @Override
-    public String exec(double aver) {
-        String s = "";
-        if (aver >= 60) {
-            s = "합격";
-        } else {
-            s = "불합격";
-        }
-        return s;
-    }
-
-    @Override
-    public int total(int kor, int eng, int math) {
-        return kor + eng + math;
-    }
-
-    @Override
-    public double avg(int total) {
-        return total / 3;
+public class Score_Process {
+    public void show(Score_ver2 iron) {
+        iron.setTotal(new Total().exec(iron.getKor(), iron.getEng(), iron.getMath()));
+        iron.setAvg(new Aver().exec(iron.getTotal()));
+        iron.setP(new Pass().exec(iron.getAvg()));
+        iron.setS(new Jang().exec(iron.getAvg()));
+        iron.setRank(new Star().exec(iron.getAvg()));
+        float avg = Float.parseFloat(String.format("%.2f", (float) iron.getAvg()));
+        // 출력은 본인이 ..
+        System.out.println(iron.getName() + " " + iron.getKor() + " " + iron.getEng() + " "
+                + iron.getMath() + " " + iron.getS() + " " + iron.getP() + " " + iron.getTotal() + " " + avg + " " + iron.getRank());
     }
 }

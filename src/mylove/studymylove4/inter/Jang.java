@@ -1,6 +1,24 @@
 package mylove.studymylove4.inter;
 
-public interface Jang extends ScoreProcess {
+public class Jang implements ScoreProcess{
     @Override
-    String exec_jang(double aver);
+    public String exec(double aver) {
+        String s = "";
+        if (aver >= 95) {
+            s = "장학생";
+        } else {
+            s = "";
+        }
+        return s;
+    }
+
+    @Override
+    public int exec(int kor, int eng, int math) {
+        return 0;
+    }
+
+    @Override
+    public double exec(int total) {
+        return 0;
+    }
 }
