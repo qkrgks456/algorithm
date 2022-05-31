@@ -1,4 +1,4 @@
-package mylove.studymylove4.extends2;
+package mylove.studymylove4.extentds.extends2;
 
 public class Main {
     public static void main(String[] args) {

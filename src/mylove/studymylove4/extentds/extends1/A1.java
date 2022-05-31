@@ -1,4 +1,4 @@
-package mylove.studymylove4.extends1;
+package mylove.studymylove4.extentds.extends1;
 
 public class A1 extends Object {
     int a;
