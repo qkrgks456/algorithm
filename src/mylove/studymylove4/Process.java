@@ -1,7 +1,9 @@
 package mylove.studymylove4;
 
 public class Process {
-
+    public Process() {
+        super();
+    }
 
     public double[] exec(int kor, int eng, int math) {
         double[] doubles = new double[2];

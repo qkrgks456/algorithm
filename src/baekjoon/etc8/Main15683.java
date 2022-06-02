@@ -42,4 +42,19 @@ public class Main15683 {
             DFS(i, level + 1);
         }
     }
+
+    public static void check(int x, int y, int direction, int cctv, int[][] ints) {
+        switch (cctv) {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+        }
+    }
 }
