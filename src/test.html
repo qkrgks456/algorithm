@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p id="good" class="test">안녕1</p>
+<p class="test">안녕2</p>
+<p class="test">안녕3</p>
+<p class="test">안녕4</p>
+</body>
+<script>
+    let classList = document.getElementsByClassName("test");
+    for (let classListElement of classList) {
+        classListElement.innerHTML = "바보";
+    }
+</script>
+</html>
