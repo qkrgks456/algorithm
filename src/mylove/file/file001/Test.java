@@ -35,5 +35,6 @@ public class Test {
         pen.flush();
         pen.close();
         System.out.println("글쓰기 완료");
+
     }
 }
