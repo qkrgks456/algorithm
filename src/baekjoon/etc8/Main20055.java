@@ -2,13 +2,12 @@ package baekjoon.etc8;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.StringTokenizer;
 
 public class Main20055 {
-    // 큐로 바꿔서 하는것부터 생각해봅시다
     static int[] ints;
     static int result = 0;
-    static List<Robot> list = new ArrayList<>();
+    static int[] ch;
 
     public static void main(String[] args) throws Exception {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
@@ -17,52 +16,48 @@ public class Main20055 {
         int k = Integer.parseInt(stringTokenizer.nextToken());
         int checkNum = n - 1;
         ints = new int[2 * n];
+        ch = new int[n];
         stringTokenizer = new StringTokenizer(bufferedReader.readLine());
-        for (int i = 0; i < 2 * n; i++) {
+        for (int i = 0; i < ints.length; i++) {
             ints[i] = Integer.parseInt(stringTokenizer.nextToken());
         }
 
         while (true) {
+            result++;
             // 1.
             // 회전
             rotation();
-            for (int i = list.size() - 1; i >= 0; i--) {
-                Robot robot = list.get(i);
-                robot.location++;
-                ints[robot.location]--;
-                if (robot.location == checkNum) {
-                    list.remove(i);
-                }
-            }
-
-            // 2.
-            // 가장 맨앞의 로봇 일단 갈지 말지 선택
-            if (list.size() != 0) {
-                Robot robot = list.get(list.size() - 1);
-                if (robot.location + 1 == checkNum) {
-                    list.remove(list.size() - 1);
-                } else {
-                    if (ints[robot.location + 1] >= 1) {
-                        robot.location++;
+            for (int i = ch.length - 2; i >= 0; i--) {
+                if (ch[i] == 1) {
+                    if (i + 1 == checkNum) {
+                        ch[i] = 0;
+                    } else {
+                        ch[i] = 0;
+                        ch[i + 1] = 1;
                     }
                 }
             }
-
-            // 나머지 로봇 앞뒤 나눠서 뒤로봇이 안 움직이면 앞로봇도 아무것도 안함
-            for (int i = list.size() - 2; i >= 0; i--) {
-                Robot frontRobot = list.get(i);
-                Robot backRobot = list.get(i + 1);
-                if (frontRobot.location + 1 != backRobot.location) {
-                    if (ints[frontRobot.location + 1] >= 1) {
-                        frontRobot.location++;
-                        ints[frontRobot.location + 1]--;
+            // 2.
+            for (int i = ch.length - 2; i >= 0; i--) {
+                if (ch[i] == 1) {
+                    if (i + 1 == checkNum) {
+                        if (ints[i + 1] >= 1) {
+                            ch[i] = 0;
+                            ints[i + 1]--;
+                        }
+                    } else {
+                        if (ch[i + 1] == 0 && ints[i + 1] >= 1) {
+                            ch[i] = 0;
+                            ch[i + 1] = 1;
+                            ints[i + 1]--;
+                        }
                     }
                 }
             }
 
             // 3.
             if (ints[0] != 0) {
-                list.add(0, new Robot(0));
+                ch[0] = 1;
                 ints[0]--;
             }
 
@@ -77,7 +72,6 @@ public class Main20055 {
                 System.out.println(result);
                 break;
             }
-            result++;
         }
     }
 
@@ -87,13 +81,5 @@ public class Main20055 {
             ints[i] = ints[i - 1];
         }
         ints[0] = num;
-    }
-}
-
-class Robot {
-    int location;
-
-    public Robot(int location) {
-        this.location = location;
     }
 }
