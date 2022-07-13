@@ -70,9 +70,7 @@ public class Main17142 {
                 ny = point.y + dy[j];
                 if (nx >= 0 && ny >= 0 && nx < n && ny < n && ints[nx][ny] != 1 && enableCheck[nx][ny] == 0) {
                     enableCheck[nx][ny] = 1;
-                    if (ints[nx][ny] != 2) {
-                        ch[nx][ny] = ch[point.x][point.y] + 1;
-                    }
+                    ch[nx][ny] = ch[point.x][point.y] + 1;
                     queue.add(new Point(nx, ny));
                 }
             }
@@ -86,20 +84,13 @@ public class Main17142 {
                     check = true;
                     break;
                 }
-                max = Math.max(max, ch[i][j]);
+                if (ints[i][j] != 2) {
+                    max = Math.max(max, ch[i][j]);
+                }
             }
         }
         if (check) {
             return;
-        }
-        if (max == 6) {
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < n; j++) {
-                    System.out.print(ch[i][j] + " ");
-                }
-                System.out.println();
-            }
-            System.out.println();
         }
         answer = Math.min(answer, max);
     }
