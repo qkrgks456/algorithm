@@ -5,14 +5,19 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main20057 {
+    static int n;
     static int[][] ints;
     static int total = 0;
-    static int[] dx = {1, -1, 2, -2, 0};
-    static int[] dy = {1, 1, 0, 0, -2};
+    static int[] dx = {0, 1, 0, -1};
+    static int[] dy = {-1, 0, 1, 0};
+    // 1, 2 ,7, 10
+    static int[][] dx2 = {{1, -1, -2, 2, -1, 1, -1, 1, 0}, {-1, -1, 0, 0, 0, 0, 1, 1, 2}, {-1, 1, -2, 2, -1, 1, 1, -1, 0}, {1, 1, 0, 0, 0, 0, -1, -1, -2}};
+    static int[][] dy2 = {{1, 1, 0, 0, 0, 0, -1, -1, -2}, {-1, 1, 2, -2, 1, -1, 1, -1, 0}, {-1, -1, 0, 0, 0, 0, 1, 1, 2}, {1, -1, 2, -2, 1, -1, -1, 1, 0}};
+    static double[] ch = {1.0, 1.0, 2.0, 2.0, 7.0, 7.0, 10.0, 10.0, 5.0};
 
     public static void main(String[] args) throws Exception {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        int n = Integer.parseInt(bufferedReader.readLine());
+        n = Integer.parseInt(bufferedReader.readLine());
         ints = new int[n][n];
         for (int i = 0; i < n; i++) {
             StringTokenizer stringTokenizer = new StringTokenizer(bufferedReader.readLine());
@@ -30,20 +35,20 @@ public class Main20057 {
             for (int i = 0; i < check; i++) {
                 if (ch2) {
                     y--;
-                    send(x, y, 1);
+                    send(x, y, 0);
                 } else {
                     y++;
-                    send(x, y, 3);
+                    send(x, y, 2);
                 }
             }
             ch2 = !ch2;
             for (int i = 0; i < check; i++) {
                 if (ch) {
                     x++;
-                    send(x, y, 2);
+                    send(x, y, 1);
                 } else {
                     x--;
-                    send(x, y, 4);
+                    send(x, y, 3);
                 }
             }
             ch = !ch;
@@ -51,41 +56,40 @@ public class Main20057 {
             if (check == n - 1) {
                 for (int i = 0; i < check; i++) {
                     y--;
-                    send(x, y, 1);
+                    send(x, y, 0);
                 }
                 break;
             }
             check++;
         }
-
+        System.out.println(total);
     }
 
     public static void send(int x, int y, int direction) {
-        // 이걸 먼저 나누자 퍼센트별로
         int send = ints[x][y];
-        int one = (int) (send * 1.0 / 100);
-        int two = (int) (send * 2.0 / 100);
-        int five = (int) (send * 5.0 / 100);
-        int seven = (int) (send * 7.0 / 100);
-        int ten = (int) (send * 10.0 / 100);
-        int alpha = send - one * 2 - two * 2 - seven * 2 - ten * 2 - five;
-        int nx, ny;
-        switch (direction) {
-            case 1:
-                // 서
-                break;
-            case 2:
-                // 남
-
-                break;
-            case 3:
-                // 동
-
-                break;
-            case 4:
-                // 북
-
-                break;
+        int alpha = send;
+        int nx2, ny2;
+        for (int i = 0; i < 9; i++) {
+            nx2 = x + dx2[direction][i];
+            ny2 = y + dy2[direction][i];
+            int percent = (int) (send * ch[i] / 100);
+            if (nx2 >= 0 && ny2 >= 0 && nx2 < n && ny2 < n) {
+                // 모래 안 나갈때
+                ints[nx2][ny2] += percent;
+            } else {
+                // 모래 나갈때
+                total += percent;
+            }
+            alpha -= percent;
+        }
+        // alpha만 체크
+        int ax, ay;
+        ax = x + dx[direction];
+        ay = y + dy[direction];
+        if (ax >= 0 && ay >= 0 && ax < n && ay < n) {
+            ints[ax][ay] += alpha;
+        } else {
+            total += alpha;
         }
     }
 }
