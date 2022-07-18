@@ -1,9 +1,7 @@
-package mylove2;
+package baekjoon.etc9;
 
-public class MainMax {
+public class Main23288 {
     public static void main(String[] args) throws Exception {
 
     }
-
-
 }
