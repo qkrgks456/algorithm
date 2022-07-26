@@ -5,32 +5,13 @@
     <title>Title</title>
 </head>
 <body>
-<div class="container panel panel-success">
-    <h3 class="panel-heading"> EX001) event </h3>
-    <p class="well" id="event1">
-        #event1를 클릭하면 - #event1의 글자색상을 white, 배경색상을 black , 가로:50%</p>
-    <p class="well" id="event2">
-        #event2를 클릭하면 - #event2의 정렬을 오른쪽으로</p>
-    <button id="ev">안녕</button>
+<div id="test">
+    <p>안녕하세여 ~</p>
+    <input type="button" class="btn" value="테스트용">
 </div>
-
-
-
+<input type="button" value="추가" id="addBtn">
 </body>
-<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-        crossorigin="anonymous"></script>
 <script>
-    $(function () {
-        $('#from2').submit(function () {
-            console.log($('#email').val());
-            console.log(typeof ($('#email').val()));
-            //검색어 입력란이 빈칸이라면
-            if ($('#email').val() == "") {  //검색어입력칸이 빈칸이라면
-                alert("빈칸입니다 검색어를 입력해주세요");
-                $('#email').focus();  //커서가게
-                return false;    // alert 처리 안되게 만들기
-            }
-        });
-    });
+
 </script>
 </html>
