@@ -1,15 +1,10 @@
 package baekjoon;
 
-import java.awt.*;
 import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        Map<Integer, Map<Integer, Point>> map = new HashMap<>();
-        map.get(0).get(1);
-
+        System.out.println((int)Math.pow(0, 2));
     }
 }
 
