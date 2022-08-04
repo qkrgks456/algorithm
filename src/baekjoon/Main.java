@@ -1,47 +1,47 @@
 package baekjoon;
 
-import java.util.Comparator;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        System.out.println((int)Math.pow(0, 2));
+        List<Tree> list = new ArrayList<>();
+        list.add(new Tree(1, 2, 1));
+        list.add(new Tree(1, 1, 3));
+        list.add(new Tree(6, 5, 2));
+        list.add(new Tree(5, 2, 3));
+        list.add(new Tree(5, 2, 2));
+        list.add(new Tree(5, 2, 1));
+        Collections.sort(list);
+        System.out.println(list);
     }
 }
 
-class MyComparator implements Comparator<Person> {
-    int result = 0;
 
-    @Override
-    public int compare(Person o1, Person o2) {
-        if (o1.x > o2.x) {
-            result = 1;
-        } else if (o1.x < o2.x) {
-            result = -1;
-        } else {
-            if (o1.y > o2.y) {
-                result = 1;
-            } else if (o1.y < o2.y) {
-                result = -1;
-            }
-        }
-        return result;
-    }
-}
-
-class Person {
+class Tree implements Comparable<Tree> {
     int x;
     int y;
+    int z;
 
-    public Person(int x, int y) {
+    public Tree(int x, int y, int z) {
         this.x = x;
         this.y = y;
+        this.z = z;
     }
 
     @Override
     public String toString() {
-        return "Person{" +
+        return "Tree{" +
                 "x=" + x +
                 ", y=" + y +
+                ", z=" + z +
                 '}';
     }
+
+    @Override
+    public int compareTo(Tree t) {
+        return this.z - t.z;
+    }
 }
+
