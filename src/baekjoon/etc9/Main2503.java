@@ -9,6 +9,7 @@ import java.util.StringTokenizer;
 public class Main2503 {
     static int result = 0;
     static List<Quiz> list = new ArrayList<>();
+    static int[] ch = new int[10];
 
     public static void main(String[] args) throws Exception {
         // 아 그러네 111 ~ 999 까지 포문 돌면서 조건 맞는지 확인하면 되네 ㅅㅂ
@@ -33,23 +34,46 @@ public class Main2503 {
         }
 
         for (int i = 1; i < 10; i++) {
-            s1[level] = String.valueOf(i);
-            DFS(level + 1, s1);
+            if (ch[i] == 0) {
+                ch[i] = 1;
+                s1[level] = String.valueOf(i);
+                DFS(level + 1, s1);
+                ch[i] = 0;
+            }
         }
     }
 
     public static void checkNum(String[] s1) {
-        String str = s1.toString();
         for (Quiz quiz : list) {
             String[] s = String.valueOf(quiz.num).split("");
             int count = 0;
             int count2 = 0;
-            //TODO 볼체크 해야됨 ㅋㅋ
+            // 스트라이크 체크
             for (int j = 0; j < 3; j++) {
                 if (s[j].equals(s1[j])) {
                     count++;
                 }
             }
+            // 볼체크
+            if (s[0].equals(s1[1])) {
+                count2++;
+            }
+            if (s[0].equals(s1[2])) {
+                count2++;
+            }
+            if (s[1].equals(s1[0])) {
+                count2++;
+            }
+            if (s[1].equals(s1[2])) {
+                count2++;
+            }
+            if (s[2].equals(s1[0])) {
+                count2++;
+            }
+            if (s[2].equals(s1[1])) {
+                count2++;
+            }
+
             if (quiz.strike != count) {
                 return;
             }
