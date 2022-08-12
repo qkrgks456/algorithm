@@ -1,4 +1,4 @@
-말package baekjoon.etc10;
+package baekjoon.etc10;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
