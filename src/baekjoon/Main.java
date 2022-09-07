@@ -1,55 +1,31 @@
 package baekjoon;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        List<Integer> list = new ArrayList<>();
-        list.add(3);
-        list.add(5);
-        list.add(6);
-        list.add(7);
-        for (int i = 1; i < list.size(); i++) {
-            list.remove(i);
-            i--;
+        List<String> list = null;
+        for (String s : list) {
+            System.out.println("sh");
         }
-        System.out.println(list);
-
     }
 }
 
 
 class Test {
-    int no;
-    int num;
+    int x;
+    int y;
 
-    public Test(int no, int num) {
-        this.no = no;
-        this.num = num;
-    }
-
-    public int getNo() {
-        return no;
-    }
-
-    public void setNo(int no) {
-        this.no = no;
-    }
-
-    public int getNum() {
-        return num;
-    }
-
-    public void setNum(int num) {
-        this.num = num;
+    public Test(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
     @Override
     public String toString() {
         return "Test{" +
-                "no=" + no +
-                ", num=" + num +
+                "x=" + x +
+                ", y=" + y +
                 '}';
     }
 }
