@@ -1,58 +1,70 @@
 package baekjoon;
 
+import java.io.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
+import java.util.StringTokenizer;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
-        List<String> list = null;
-        for (String s : list) {
-            System.out.println("sh");
+
+    static int n, sx, sy, dx, dy;
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringTokenizer st = null;
+
+        int t = Integer.parseInt(br.readLine());
+        for (int tc = 0; tc < t; tc++) {
+            n = Integer.parseInt(br.readLine());
+            List<int[]> list = new ArrayList<>();
+            for (int i = 0; i < n + 2; i++) {
+                st = new StringTokenizer(br.readLine());
+                int x = Integer.parseInt(st.nextToken());
+                int y = Integer.parseInt(st.nextToken());
+                if (i == 0) {
+                    sx = x;
+                    sy = y;
+                } else if (i == n + 1) {
+                    dx = x;
+                    dy = y;
+                } else {
+                    list.add(new int[]{x, y});
+                }
+            }
+
+            bw.write(bfs(list) ? "happy\n" : "sad\n");
         }
+
+        bw.flush();
+        bw.close();
     }
+
+    static boolean bfs(List<int[]> list) {
+        Queue<int[]> q = new LinkedList<>();
+        boolean[] visited = new boolean[n];
+        q.add(new int[]{sx, sy});
+        while (!q.isEmpty()) {
+            int[] pos = q.poll();
+            int px = pos[0], py = pos[1];
+            if (Math.abs(px - dx) + Math.abs(py - dy) <= 1000) {
+                return true;
+            }
+
+            for (int i = 0; i < n; i++) {
+                if (!visited[i]) {
+                    int nx = list.get(i)[0], ny = list.get(i)[1];
+                    int dis = Math.abs(px - nx) + Math.abs(py - ny);
+                    if (dis <= 1000) {
+                        visited[i] = true;
+                        q.add(new int[]{nx, ny});
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
 }
-
-
-class Test {
-    int x;
-    int y;
-
-    public Test(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    @Override
-    public String toString() {
-        return "Test{" +
-                "x=" + x +
-                ", y=" + y +
-                '}';
-    }
-}
-
-class Tree implements Comparable<Tree> {
-    int x;
-    int y;
-    int z;
-
-    public Tree(int x, int y, int z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
-
-    @Override
-    public String toString() {
-        return "Tree{" +
-                "x=" + x +
-                ", y=" + y +
-                ", z=" + z +
-                '}';
-    }
-
-    @Override
-    public int compareTo(Tree t) {
-        return this.z - t.z;
-    }
-}
-
