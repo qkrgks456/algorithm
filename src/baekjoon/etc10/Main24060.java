@@ -15,7 +15,8 @@ public class Main24060 {
         for (int i = 0; i < n; i++) {
             ints[i] = Integer.parseInt(stringTokenizer.nextToken());
         }
-        int q =n / 2;
+        int q = n / 2;
+
 
     }
 }
