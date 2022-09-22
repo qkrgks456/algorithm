@@ -2,7 +2,10 @@ package programmers;
 
 public class Main {
     public static void main(String[] args) {
-
+        boolean test = false;
+        boolean win = false;
+        win |= !test;
+        System.out.println(win);
     }
 }
 
