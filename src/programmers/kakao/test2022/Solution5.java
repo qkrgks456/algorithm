@@ -1,4 +1,4 @@
-package programmers.kakao;
+package programmers.kakao.test2022;
 
 import java.util.ArrayList;
 import java.util.List;

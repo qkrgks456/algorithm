@@ -1,4 +1,4 @@
-package programmers.kakao;
+package programmers.kakao.test2022;
 
 public class Solution2 {
     public int solution(int n, int k) {

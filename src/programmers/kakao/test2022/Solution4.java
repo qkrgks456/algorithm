@@ -1,4 +1,4 @@
-package programmers.kakao;
+package programmers.kakao.test2022;
 
 public class Solution4 {
     static int result = -1000;
