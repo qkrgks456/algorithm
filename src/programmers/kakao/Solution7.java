@@ -5,43 +5,32 @@ public class Solution7 {
     static int[] dy = {0, 0, 1, -1};
 
     public int solution(int[][] board, int[] aloc, int[] bloc) {
-        int answer = -1;
-        DFS(aloc[0], aloc[1], bloc[0], bloc[1], "a", board, 0);
-        return answer;
+        return DFS(aloc[0], aloc[1], bloc[0], bloc[1], board, 0).count;
     }
 
-    public static void DFS(int ax, int ay, int bx, int by, String check, int[][] board, int score) {
-        // 둘중 하나라도 움직일 수 없다면
-        if (!moveCheck(ax, ay, board) || !moveCheck(bx, by, board)) {
-
-            return;
-        }
-        // 둘의 자리가 같아서 다음번에 이동하면 끝남
-        if (ax == bx && ay == by) {
-            return;
-        }
-
-
+    public static Result DFS(int x, int y, int cx, int cy, int[][] board, int score) {
+        boolean win = false;
+        int minCount = 5 * 5;
+        int maxCount = score;
         int nx, ny;
-        int x, y;
-        if (check.equals("a")) {
-            x = ax;
-            y = ay;
-        } else {
-            x = bx;
-            y = by;
+        if (board[x][y] == 1) {
+            for (int i = 0; i < 4; i++) {
+                nx = x + dx[i];
+                ny = y + dy[i];
+                if (moveCheck(nx, ny, board)) {
+                    board[x][y] = 0;
+                    Result r = DFS(cx, cy, nx, ny, board, score + 1);
+                    win |= !r.win;
+                    if (!r.win) {
+                        minCount = Math.min(minCount, r.count);
+                    } else {
+                        maxCount = Math.max(maxCount, r.count);
+                    }
+                    board[x][y] = 1;
+                }
+            }
         }
-        for (int i = 0; i < 4; i++) {
-            nx = x + dx[i];
-            ny = y + dy[i];
-            board[x][y] = 0;
-            score++;
-            DFS(nx, ny, bx, by, "b", board, score);
-            board[x][y] = 1;
-            score--;
-        }
-
-
+        return new Result(win, win ? minCount : maxCount);
     }
 
     public static boolean moveCheck(int x, int y, int[][] board) {
@@ -49,5 +38,15 @@ public class Solution7 {
             return true;
         }
         return false;
+    }
+}
+
+class Result {
+    boolean win;
+    int count;
+
+    public Result(boolean win, int count) {
+        this.win = win;
+        this.count = count;
     }
 }
