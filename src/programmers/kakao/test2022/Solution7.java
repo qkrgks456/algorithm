@@ -1,4 +1,4 @@
-package programmers.kakao;
+package programmers.kakao.test2022;
 
 public class Solution7 {
     static int[] dx = {1, -1, 0, 0};
