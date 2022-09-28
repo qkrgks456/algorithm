@@ -1,30 +1,28 @@
 package programmers;
 
-import java.awt.*;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Arrays;
 
 public class Main {
 
+    static int[] ints = {1, 2, 3, 4, 5};
+    static int[] check = new int[5];
+    static int[] result = new int[3];
+    static int n = 3;
+
     public static void main(String[] args) {
-        Map<Integer, Point> map = new HashMap<>();
-        int num = 0;
-        for (int i = 1; i < 9; i += 3) {
-            map.put(i, new Point(num, 0));
-            map.put(i + 1, new Point(num, 1));
-            map.put(i + 2, new Point(num, 2));
-            num++;
-        }
-        System.out.println(map);
+        DFS(0, 0);
     }
 
-    public static int numCount(int n) {
-        int count = 0;
-        for (int i = 1; i * i <= n; i++) {
-            if (i * i == n) count++;
-            else if (n % i == 0) count += 2;
+    public static void DFS(int level, int start) {
+        if (level == n) {
+            System.out.println(Arrays.toString(result));
+            return;
         }
-        return count;
+
+        for (int i = start; i < 5; i++) {
+            result[level] = ints[i];
+            DFS(level + 1, i + 1);
+        }
     }
 }
 
