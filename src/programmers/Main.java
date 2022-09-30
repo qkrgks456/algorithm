@@ -10,7 +10,7 @@ public class Main {
     static int n = 3;
 
     public static void main(String[] args) {
-        DFS(0, 0);
+        System.out.println(0 %2 );
     }
 
     public static void DFS(int level, int start) {
