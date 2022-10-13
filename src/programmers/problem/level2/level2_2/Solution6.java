@@ -11,14 +11,22 @@ public class Solution6 {
         }
         int result = 0;
         while (!queue.isEmpty()) {
-            int size = queue.size();
-            for (int i = 0; i < size; i++) {
-                int num = queue.poll();
-
-            }
             result++;
+            int size = queue.size();
+            for (int i = 0; i < size; i += 2) {
+                int first = queue.poll();
+                int second = queue.poll();
+                if ((first == a && second == b) || (first == b && second == a)) {
+                    return result;
+                } else if (first != a && first != b && second != a && second != b) {
+                    queue.add(first);
+                } else if (first == a || first == b) {
+                    queue.add(first);
+                } else if (second == a || second == b) {
+                    queue.add(second);
+                }
+            }
         }
-
         return result;
     }
 }
