@@ -1,33 +1,27 @@
 package programmers.problem.level2.level2_3;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.List;
+import java.util.*;
 
 public class Solution8 {
     public int[] solution(int[] progresses, int[] speeds) {
+        List<Integer> result = new ArrayList<>();
         List<Integer> list = new ArrayList<>();
-        Deque<Integer> queue = new ArrayDeque<>();
-        for (int n : progresses) {
-            queue.addLast(n);
+        for (int i = 0; i < progresses.length; i++) {
+            int num = (100 - progresses[i]) % speeds[i] != 0 ? (100 - progresses[i]) / speeds[i] + 1 : (100 - progresses[i]) / speeds[i];
+            list.add(num);
         }
-        while (!queue.isEmpty()) {
-            int size = queue.size();
-            for (int i = 0; i < size; i++) {
-                int n = queue.pollFirst();
-                int sum = n + speeds[i];
-                queue.addLast(sum);
+        int res = 1;
+        int count = list.get(0);
+        for (int i = 1; i < list.size(); i++) {
+            if (count >= list.get(i)) {
+                res++;
+            } else {
+                result.add(res);
+                res = 1;
+                count = list.get(i);
             }
-            int result = 0;
-            int num = queue.peekFirst();
-            System.out.println(num);
-            while (num >= 100) {
-                result++;
-                queue.pollFirst();
-            }
-            list.add(result);
         }
-        return list.stream().mapToInt(i -> i).toArray();
+        result.add(res);
+        return result.stream().mapToInt(i -> i).toArray();
     }
 }

@@ -1,28 +1,19 @@
 package programmers;
 
-import java.util.Arrays;
-
 public class Main {
 
-    static int[] ints = {1, 2, 3, 4, 5};
-    static int[] check = new int[5];
-    static int[] result = new int[3];
-    static int n = 3;
 
     public static void main(String[] args) {
-        System.out.println(0 %2 );
-    }
-
-    public static void DFS(int level, int start) {
-        if (level == n) {
-            System.out.println(Arrays.toString(result));
-            return;
-        }
-
-        for (int i = start; i < 5; i++) {
-            result[level] = ints[i];
-            DFS(level + 1, i + 1);
+        String s = "FRANCE";
+        System.out.println(s.substring(0, 2));
+        System.out.println(s.substring(1, 3));
+        System.out.println(s.substring(2, 4));
+        System.out.println(s.substring(3, 5));
+        System.out.println(s.substring(4, 6));
+        for (int i = 0; i < s.length() - 1; i++) {
+            System.out.println(s.substring(i, i + 2));
         }
     }
+
 }
 
