@@ -4,8 +4,7 @@ public class Main {
 
 
     public static void main(String[] args) {
-        long l = 1000000000000000L;
-        System.out.println(toBinary(l,50));
+        System.out.println(1/2);
 
     }
 

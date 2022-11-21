@@ -27,7 +27,7 @@ public class Main02 {
 
     public static void DFS(int x, int y, int n) {
         if (numCheck(x, y, n)) {
-            stringBuilder.append(String.valueOf(ints[x][y]));
+            stringBuilder.append(ints[x][y]);
             return;
         }
         int size = n / 2;
