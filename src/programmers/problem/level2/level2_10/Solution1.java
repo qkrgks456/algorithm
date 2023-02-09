@@ -24,12 +24,10 @@ public class Solution1 {
             result += map.get(strings[i]);
         }
         if (aCheck) return 0;
-        
+
+        return 0;
 
 
-
-        int answer = 0;
-        return answer;
     }
 
 }
