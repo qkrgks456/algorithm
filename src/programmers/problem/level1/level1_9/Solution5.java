@@ -1,15 +1,16 @@
-import java.util.Arrays;
+package programmers.problem.level1.level1_9;
+
 import java.util.HashMap;
 import java.util.Map;
 
-public class Main2 {
+public class Solution5 {
 
-    public static void main(String[] args) {
+    public int[] solution(String s) {
         Map<String, Integer> map = new HashMap<>();
         for (int i = 'a'; i <= 'z'; i++) {
             map.put(String.valueOf((char) i), -1);
         }
-        String[] strings = "foobar".split("");
+        String[] strings = s.split("");
         int[] result = new int[strings.length];
         for (int i = 0; i < strings.length; i++) {
             if (map.get(strings[i]) == -1) {
@@ -20,5 +21,7 @@ public class Main2 {
             result[i] = i - map.get(strings[i]);
             map.put(strings[i], i);
         }
+        return result;
     }
+
 }
