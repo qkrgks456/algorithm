@@ -1,24 +1,31 @@
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
 public class Main2 {
 
     public static void main(String[] args) {
-        Map<String, Integer> map = new HashMap<>();
-        for (int i = 'a'; i <= 'z'; i++) {
-            map.put(String.valueOf((char) i), -1);
-        }
-        String[] strings = "foobar".split("");
-        int[] result = new int[strings.length];
-        for (int i = 0; i < strings.length; i++) {
-            if (map.get(strings[i]) == -1) {
-                result[i] = -1;
-                map.put(strings[i], i);
-                continue;
+        String s = "aaabbaccccabba";
+        String[] strings = s.split("");
+        int result = 0;
+        while (true) {
+            int ch1 = 1;
+            int ch2 = 0;
+            String ch = strings[0];
+            for (int i = 1; i < strings.length; i++) {
+                if (ch.equals(strings[i])) {
+                    ch1++;
+                    continue;
+                }
+                ch2++;
+                if (ch1 == ch2) {
+                    String s1 = String.join("", strings);
+                    strings = s1.substring(i + 1).split("");
+                    result++;
+                    break;
+                }
             }
-            result[i] = i - map.get(strings[i]);
-            map.put(strings[i], i);
+            if (strings.length == 1) {
+                if (!strings[0].isEmpty()) result++;
+                break;
+            }
         }
+        System.out.println(result);
     }
 }
