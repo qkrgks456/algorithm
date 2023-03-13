@@ -16,6 +16,7 @@ public class Main3190 {
 
     // 아니 거의다 왔는데 진짜 개 열받게 계속 틀리네 ㅡ.ㅡ
     public static void main(String[] args) throws Exception {
+
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         N = Integer.parseInt(bufferedReader.readLine());
         ints = new int[N][N];
