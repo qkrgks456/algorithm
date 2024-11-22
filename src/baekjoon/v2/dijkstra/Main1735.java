@@ -9,6 +9,7 @@ import java.util.StringTokenizer;
 
 public class Main1735 {
     public static void main(String[] args) throws Exception {
+
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer stringTokenizer = new StringTokenizer(bufferedReader.readLine());
         int v = Integer.parseInt(stringTokenizer.nextToken());
