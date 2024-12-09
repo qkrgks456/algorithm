@@ -13,7 +13,7 @@ public class Main10431 {
             StringTokenizer st = new StringTokenizer(br.readLine());
             int n = Integer.parseInt(st.nextToken());
             int[] ints = new int[20];
-            for (int j = 0; j < n; j++) {
+            for (int j = 0; j < 20; j++) {
                 ints[j] = Integer.parseInt(st.nextToken());
             }
             int count = 0;
@@ -27,6 +27,7 @@ public class Main10431 {
                         index = k;
                     }
                 }
+
                 // 움직여라
                 if (flag) {
                     int idx = j;
